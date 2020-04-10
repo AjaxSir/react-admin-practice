@@ -1,0 +1,10 @@
+.ant-layout-header {
+    background: lightblue;
+}
+
+.nav {
+    width: 120px;
+    height: 64px;
+    float: right;
+    line-height: 64px;
+}
