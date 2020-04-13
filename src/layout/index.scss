@@ -1,10 +1,14 @@
 .ant-layout-header {
     background: lightblue;
+    padding: 0px 20px;
 }
 
 .nav {
     width: 120px;
     height: 64px;
     float: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 64px;
 }

@@ -3,9 +3,11 @@ import { Switch, Route, Link } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
 import routeConfig from '../routes'
 import BreadCrumb from '../component/BreadCrumb'
+import NavHeader from './header.jsx'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import logo from '../logo.svg'
-import './index.css'
-import { GetCookie } from '../utils/cookie'
+import './index.scss'
+
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
 class LayoutContent extends Component {
@@ -14,7 +16,9 @@ class LayoutContent extends Component {
     this.state = {
       collasped: true,
     }
+    console.log(this.props)
   }
+
   render() {
     return (
       <Layout style={{ height: '100vh' }}>
@@ -26,13 +30,16 @@ class LayoutContent extends Component {
             {routeConfig.map((ele, index) => {
               if (ele.children && !ele.hidden) {
                 return (
-                  <SubMenu key={ele.path} title={<span> {ele.title} </span>}>
+                  <SubMenu
+                    key={ele.path + index}
+                    title={<span> {ele.title} </span>}
+                  >
                     {ele.children.map((child, ind) => {
                       if (child.hidden) {
                         return null
                       } else {
                         return (
-                          <Menu.Item key={ele.path + ind}>
+                          <Menu.Item key={child.path + ind}>
                             <Link to={child.path}>{child.title}</Link>
                           </Menu.Item>
                         )
@@ -48,24 +55,32 @@ class LayoutContent extends Component {
         </Sider>
         <Layout>
           <Header>
-            <div className="nav">用户名: {GetCookie('username')}</div>
+            <NavHeader></NavHeader>
           </Header>
-          <Content>
+          <Content style={{ position: 'relative' }}>
             <BreadCrumb {...this.props}> </BreadCrumb>
-            <Switch>
-              {this.props.route.children.map((ele, index) => {
-                return (
-                  <Route
-                    key={index}
-                    component={ele.Component}
-                    path={ele.path}
-                  ></Route>
-                )
-              })}
-              {/* <Redirect
+            <TransitionGroup>
+              <CSSTransition
+                key={this.props.location.pathname}
+                timeout={800}
+                classNames="fade"
+              >
+                <Switch>
+                  {this.props.route.children.map((ele, index) => {
+                    return (
+                      <Route
+                        key={index}
+                        component={ele.Component}
+                        path={ele.path}
+                      ></Route>
+                    )
+                  })}
+                  {/* <Redirect
                 to={{ pathname: this.props.route.children[0].path }}
               ></Redirect> */}
-            </Switch>
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
           </Content>
         </Layout>
       </Layout>

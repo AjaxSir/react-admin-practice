@@ -1,6 +1,6 @@
 import React from 'react'
 export default class system extends React.Component {
   render() {
-    return <span> 用户设置 </span>
+    return <div className="main-content">用户设置</div>
   }
 }

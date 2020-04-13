@@ -1,5 +1,5 @@
 import login from '../views/login'
-import layout from '../layout'
+import layout from '../layout/index.jsx'
 import Home from '../layout/home'
 import System from '../views/system'
 import AuthSystem from '../views/system/auth'
