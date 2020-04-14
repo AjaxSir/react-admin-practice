@@ -15,7 +15,22 @@ class LayoutContent extends Component {
     super(props)
     this.state = {
       collasped: true,
+      pwd: '12345678',
     }
+  }
+  parentPwdChange = (pwd) => {
+    this.setState(
+      () => {
+        return {
+          pwd,
+        }
+      },
+      () => {
+        // setState异步 这里是同步打印最新值
+        console.log(this.state.pwd, 'newPwd')
+      }
+    )
+    console.log(this.state.pwd, 'oldPwd')
   }
 
   render() {
@@ -57,7 +72,10 @@ class LayoutContent extends Component {
         <Layout>
           <Header>
             <BreadCrumb {...this.props}> </BreadCrumb>
-            <NavHeader></NavHeader>
+            <NavHeader
+              parentPwdChange={this.parentPwdChange}
+              pwd={this.state.pwd}
+            ></NavHeader>
           </Header>
           <Content style={{ position: 'relative' }}>
             <TransitionGroup>
