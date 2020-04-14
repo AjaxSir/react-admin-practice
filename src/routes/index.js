@@ -1,6 +1,7 @@
 import login from '../views/login'
 import layout from '../layout/index.jsx'
 import loadable from '../utils/loadable'
+import User from '../views/system'
 const routes = [{
         path: '/login',
         component: login,
@@ -34,14 +35,19 @@ const routes = [{
         children: [{
                 title: '用户设置',
                 path: '/system/user',
-                Component: loadable(() =>
-                    import ('../views/system/auth.jsx')),
+                Component: User,
             },
             {
                 title: '权限设置',
                 path: '/system/auth',
                 Component: loadable(() =>
-                    import ('../views/system')),
+                    import ('../views/system/auth.jsx')),
+            },
+            {
+                title: '设备设置',
+                path: '/system/device',
+                Component: loadable(() =>
+                    import ('../views/system/device.jsx')),
             },
         ],
     },

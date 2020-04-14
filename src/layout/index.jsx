@@ -16,7 +16,6 @@ class LayoutContent extends Component {
     this.state = {
       collasped: true,
     }
-    console.log(this.props)
   }
 
   render() {
@@ -40,7 +39,9 @@ class LayoutContent extends Component {
                       } else {
                         return (
                           <Menu.Item key={child.path + ind}>
-                            <Link to={child.path}>{child.title}</Link>
+                            <Link key={child.path + ind} to={child.path}>
+                              {child.title}
+                            </Link>
                           </Menu.Item>
                         )
                       }
@@ -55,17 +56,18 @@ class LayoutContent extends Component {
         </Sider>
         <Layout>
           <Header>
+            <BreadCrumb {...this.props}> </BreadCrumb>
             <NavHeader></NavHeader>
           </Header>
           <Content style={{ position: 'relative' }}>
-            <BreadCrumb {...this.props}> </BreadCrumb>
             <TransitionGroup>
               <CSSTransition
                 key={this.props.location.pathname}
                 timeout={800}
                 classNames="fade"
               >
-                <Switch>
+                <Switch location={this.props.location}>
+                  {/* location设置作用为防止节点多次被挂载 */}
                   {this.props.route.children.map((ele, index) => {
                     return (
                       <Route

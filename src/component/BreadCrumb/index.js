@@ -11,7 +11,7 @@ export default class BreadCrumb extends React.Component {
     const routes = this.props.location.pathname
     const nameArr = routes.split('/').filter((i) => i)
     return (
-      <Breadcrumb>
+      <Breadcrumb style={{ float: 'left', width: '300px', marginTop: '20px' }}>
         <Item key={'welcome'} href={'/welcome'}>
           欢迎页面
         </Item>
