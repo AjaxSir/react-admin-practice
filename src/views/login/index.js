@@ -3,7 +3,10 @@ import { Form, Input, Button } from 'antd'
 import './login.css'
 import logo from '../../logo.svg'
 import { GetCookie, SetCookie } from '../../utils/cookie'
-export default class Login extends React.Component {
+import { connect } from 'react-redux'
+import { setUserInfo } from '../../redux/action'
+import store from '../../redux/store'
+class Login extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -38,11 +41,14 @@ export default class Login extends React.Component {
         span: 16,
       },
     }
-
     const finish = () => {
       if (this.state.username === 'xiaolong.su' && this.state.pwd === '123') {
         SetCookie('username', this.state.username)
         this.props.history.push('/dash/home')
+
+        store.dispatch(
+          setUserInfo({ name: this.state.username, age: 25, gender: 'Male' })
+        )
       }
     }
     return (
@@ -83,3 +89,7 @@ export default class Login extends React.Component {
     )
   }
 }
+const mapStateToProps = function (store) {
+  return store
+}
+export default connect(mapStateToProps)(Login)

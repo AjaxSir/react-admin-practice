@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'antd'
-export default class authSystem extends React.Component {
+import { connect } from 'react-redux'
+class authSystem extends React.Component {
   componentDidMount() {
     console.log('权限设置')
+    const { user } = this.props
+    console.log(user)
   }
   toUser = () => {
     console.log('跳转')
@@ -26,3 +29,7 @@ export default class authSystem extends React.Component {
     )
   }
 }
+const mapStatusToProps = function (store) {
+  return store
+}
+export default connect(mapStatusToProps)(authSystem)
