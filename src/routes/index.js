@@ -1,4 +1,4 @@
-import login from '../views/login'
+import login from '../views/login/index.jsx'
 import layout from '../layout/index.jsx'
 import loadable from '../utils/loadable'
 import User from '../views/system'

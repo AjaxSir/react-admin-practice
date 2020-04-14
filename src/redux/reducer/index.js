@@ -5,6 +5,7 @@ function getSeesionUserInfo() {
             name: '',
             age: '',
             gender: '',
+            auth: false,
         }
 } // 防止刷新数据丢失处理
 
@@ -12,6 +13,7 @@ const user_info = {
     name: getSeesionUserInfo().name,
     age: getSeesionUserInfo().age,
     gender: getSeesionUserInfo().gender,
+    auth: getSeesionUserInfo().auth,
 }
 
 export default function userInfoChange(state = user_info, action) {

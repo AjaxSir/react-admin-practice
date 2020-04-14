@@ -4,6 +4,7 @@ import { Layout, Menu } from 'antd'
 import routeConfig from '../routes'
 import BreadCrumb from '../component/BreadCrumb'
 import NavHeader from './header.jsx'
+import { connect } from 'react-redux'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import logo from '../logo.svg'
 import './index.scss'
@@ -32,7 +33,14 @@ class LayoutContent extends Component {
     )
     console.log(this.state.pwd, 'oldPwd')
   }
-
+  componentWillMount() {
+    const {
+      history: { replace },
+      user,
+    } = this.props
+    console.log(this.props.user.auth)
+    if (!user.auth) replace('/login')
+  }
   render() {
     return (
       <Layout style={{ height: '100vh' }}>
@@ -107,4 +115,7 @@ class LayoutContent extends Component {
     )
   }
 }
-export default LayoutContent
+const mapStatusToProps = function (store) {
+  return store
+}
+export default connect(mapStatusToProps)(LayoutContent)
