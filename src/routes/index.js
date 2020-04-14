@@ -1,9 +1,6 @@
 import login from '../views/login'
 import layout from '../layout/index.jsx'
-import Home from '../layout/home'
-import System from '../views/system'
-import AuthSystem from '../views/system/auth'
-import Welcome from '../views/welcome'
+import loadable from '../utils/loadable'
 const routes = [{
         path: '/login',
         component: login,
@@ -15,7 +12,8 @@ const routes = [{
         children: [{
             title: '欢迎',
             path: '/welcome',
-            Component: Welcome,
+            Component: loadable(() =>
+                import ('../views/welcome')),
         }, ],
     },
     {
@@ -25,7 +23,8 @@ const routes = [{
         children: [{
             title: '通行统计',
             path: '/dash/home',
-            Component: Home,
+            Component: loadable(() =>
+                import ('../layout/home')),
         }, ],
     },
     {
@@ -35,12 +34,14 @@ const routes = [{
         children: [{
                 title: '用户设置',
                 path: '/system/user',
-                Component: System,
+                Component: loadable(() =>
+                    import ('../views/system/auth.jsx')),
             },
             {
                 title: '权限设置',
                 path: '/system/auth',
-                Component: AuthSystem,
+                Component: loadable(() =>
+                    import ('../views/system')),
             },
         ],
     },
