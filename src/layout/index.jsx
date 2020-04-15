@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
 import routeConfig from '../routes'
 import BreadCrumb from '../component/BreadCrumb'
@@ -17,6 +17,7 @@ class LayoutContent extends Component {
     this.state = {
       collasped: true,
       pwd: '12345678',
+      url: '',
     }
   }
   parentPwdChange = (pwd) => {
@@ -33,12 +34,18 @@ class LayoutContent extends Component {
     )
     console.log(this.state.pwd, 'oldPwd')
   }
+  toPage = (item) => {
+    console.log(item.key, '路径')
+    this.props.history.push(item.key)
+    this.setState({
+      url: this.props.location.pathname,
+    })
+  }
   componentWillMount() {
     const {
       history: { replace },
       user,
     } = this.props
-    console.log(this.props.user.auth)
     if (!user.auth) replace('/login')
   }
   render() {
@@ -48,29 +55,33 @@ class LayoutContent extends Component {
           <div>
             <img height="64px" src={logo} alt="" />
           </div>
-          <Menu theme={'dark'} mode="inline">
-            {routeConfig.map((ele, index) => {
-              if (ele.children && !ele.hidden) {
-                return (
-                  <SubMenu
-                    key={ele.path + index}
-                    title={<span> {ele.title} </span>}
-                  >
-                    {ele.children.map((child, ind) => {
-                      if (child.hidden) {
-                        return null
-                      } else {
-                        return (
-                          <Menu.Item key={child.path + ind}>
-                            <Link key={child.path + ind} to={child.path}>
-                              {child.title}
-                            </Link>
-                          </Menu.Item>
-                        )
-                      }
-                    })}
-                  </SubMenu>
-                )
+          <Menu onClick={this.toPage} theme={'dark'} mode="inline">
+            {routeConfig.map((elePa) => {
+              if (elePa.children) {
+                return elePa.children.map((ele, index) => {
+                  if (!ele.hidden) {
+                    return (
+                      <SubMenu
+                        key={ele.path + index}
+                        title={<span> {ele.title} </span>}
+                      >
+                        {ele.children.map((child, ind) => {
+                          if (child.hidden) {
+                            return null
+                          } else {
+                            return (
+                              <Menu.Item key={child.path}>
+                                <span>{child.title}</span>
+                              </Menu.Item>
+                            )
+                          }
+                        })}
+                      </SubMenu>
+                    )
+                  } else {
+                    return null
+                  }
+                })
               } else {
                 return null
               }
@@ -94,14 +105,16 @@ class LayoutContent extends Component {
               >
                 <Switch location={this.props.location}>
                   {/* location设置作用为防止节点多次被挂载 */}
-                  {this.props.route.children.map((ele, index) => {
-                    return (
-                      <Route
-                        key={index}
-                        component={ele.Component}
-                        path={ele.path}
-                      ></Route>
-                    )
+                  {this.props.route.children.map((elePa) => {
+                    return elePa.children.map((ele, index) => {
+                      return (
+                        <Route
+                          key={index + ele.path}
+                          component={ele.Component}
+                          path={ele.path}
+                        ></Route>
+                      )
+                    })
                   })}
                   {/* <Redirect
                 to={{ pathname: this.props.route.children[0].path }}

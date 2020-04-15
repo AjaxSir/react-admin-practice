@@ -9,9 +9,8 @@ class authSystem extends React.Component {
     console.log(user)
   }
   toUser = () => {
-    console.log('跳转')
     this.props.history.push({
-      pathname: '/system/user',
+      pathname: '/dash/system/user',
       query: { name: 'ceshi1' },
     })
     // 刷新参数丢失
