@@ -13,6 +13,7 @@ class Login extends React.Component {
       username: '',
       pwd: '',
     }
+    store.subscribe(this.showState)
   }
   Change = (type, e) => {
     const val = e.target.value
@@ -26,6 +27,9 @@ class Login extends React.Component {
       default:
         break
     }
+  }
+  showState = () => {
+    console.log(store.getState(), 'state value')
   }
   // componentWillMount() {
   //   if (GetCookie('username')) {

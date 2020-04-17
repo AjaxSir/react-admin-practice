@@ -1,7 +1,7 @@
 import login from '../views/login/index.jsx'
 import layout from '../layout/index.jsx'
 import loadable from '../utils/loadable'
-import User from '../views/system'
+import User from '../views/system/index.jsx'
 const routes = [{
         path: '/login',
         component: login,
