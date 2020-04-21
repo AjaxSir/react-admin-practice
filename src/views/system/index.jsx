@@ -1,6 +1,10 @@
 import React from 'react'
 import { Form, Input, Button, Radio, Select, Upload } from 'antd'
 import defaultLogo from '../../static/img/logo192.png'
+import UseStateHooks from '../hooks/useState.jsx'
+import UseMemoHooks from '../hooks/useMemo.jsx'
+import ReactMemo from '../hooks/reactMemo.jsx'
+import UseReducer from '../hooks/useReducer.jsx'
 const { Item } = Form
 const { Option } = Select
 const Layout = {
@@ -45,6 +49,10 @@ class userSystem extends React.Component {
     value: 'default',
     imgUrl: '',
     phone: '13518160587',
+    obj: {
+      name: 'sxl',
+    },
+    count: 0,
   }
   componentDidMount() {}
   logoChange = (e) => {
@@ -85,6 +93,22 @@ class userSystem extends React.Component {
     } else {
       return Promise.resolve()
     }
+  }
+
+  changeName() {
+    console.log('修改名字')
+    this.setState({
+      obj: {
+        name: 'update sxl',
+      },
+    })
+  }
+  changeCount() {
+    this.setState((prev) => {
+      return {
+        count: prev.count + 1,
+      }
+    })
   }
   render() {
     return (
@@ -131,6 +155,17 @@ class userSystem extends React.Component {
             <Button type="primary"> 提交 </Button>
           </Item>
         </Form>
+        <UseStateHooks></UseStateHooks>
+        <UseMemoHooks
+          name={this.state.obj.name}
+          props={this.state.obj}
+        ></UseMemoHooks>
+
+        <ReactMemo {...this.state}></ReactMemo>
+        <Button onClick={() => this.changeName()}>修改名字</Button>
+        <Button onClick={() => this.changeCount()}>修改次数</Button>
+        <br />
+        <UseReducer></UseReducer>
       </div>
     )
   }
