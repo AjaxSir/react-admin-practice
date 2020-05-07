@@ -1,16 +1,30 @@
 import React from 'react'
 import SvgIcon from '../component/svg/index'
-import { GetCookie } from '../utils/cookie'
+import { GetCookie, removeCookie } from '../utils/cookie'
 import { Dropdown, Menu } from 'antd'
+import store from '../redux/store'
+import { removeUserInfo } from '../redux/action'
 import { DownOutlined } from '@ant-design/icons'
 import './index.scss'
+import { withRouter } from 'react-router-dom'
 const { Item, Divider } = Menu
 
 const Header = (props) => {
   console.log(props.pwd, '父传子密码') // 当props变化 Header重新渲染 故changePwd时 上句也会打印
   const changePwd = () => {
-    console.log('修改密码')
     props.parentPwdChange('123456')
+  }
+  const Logout = () => {
+    store.dispatch(
+      removeUserInfo({
+        name: '',
+        age: '',
+        gender: '',
+        auth: false,
+      })
+    )
+    removeCookie('username')
+    props.history.push('/login')
   }
   const menu = () => {
     return (
@@ -20,7 +34,7 @@ const Header = (props) => {
         </Item>
         <Divider></Divider>
         <Item key="1">
-          <span>退出登录</span>
+          <span onClick={Logout}>退出登录</span>
         </Item>
       </Menu>
     )
@@ -37,4 +51,4 @@ const Header = (props) => {
     </div>
   )
 }
-export default Header
+export default withRouter(Header)

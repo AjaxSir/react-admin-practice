@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Input, Button } from 'antd'
 import './login.css'
 import logo from '../../logo.svg'
-import { SetCookie } from '../../utils/cookie'
+import { SetCookie, GetCookie } from '../../utils/cookie'
 import { connect } from 'react-redux'
 import { setUserInfo } from '../../redux/action'
 import store from '../../redux/store'
@@ -31,11 +31,11 @@ class Login extends React.Component {
   showState = () => {
     console.log(store.getState(), 'state value')
   }
-  // componentWillMount() {
-  //   if (GetCookie('username')) {
-  //     this.props.history.push('/dash/home')
-  //   }
-  // }
+  componentWillMount() {
+    if (GetCookie('username')) {
+      this.props.history.push('/dash/home')
+    }
+  }
   render() {
     const layout = {
       labelCol: {
@@ -48,7 +48,7 @@ class Login extends React.Component {
     const finish = () => {
       if (this.state.username === 'xiaolong.su' && this.state.pwd === '123') {
         SetCookie('username', this.state.username)
-        this.props.history.push('/dash/home')
+        this.props.history.push('/dash/welcome')
         store.dispatch(
           setUserInfo({
             name: this.state.username,

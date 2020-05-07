@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import logo from '../logo.svg'
 import './index.scss'
+import { GetCookie } from '../utils/cookie'
 
 const { Header, Sider, Content } = Layout
 const { SubMenu } = Menu
@@ -44,9 +45,9 @@ class LayoutContent extends Component {
   componentWillMount() {
     const {
       history: { replace },
-      user,
     } = this.props
-    if (!user.auth) replace('/login')
+    console.log(this.props, 'props')
+    if (!GetCookie('username')) replace('/login')
   }
   render() {
     return (
