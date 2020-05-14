@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from '../../utils/axios'
 import { Table, Button, Avatar } from 'antd'
-export default class Device extends React.Component {
+import getCookie from '../../component/getCookie'
+class Device extends React.Component {
   state = {
     data: [],
   }
@@ -67,3 +68,6 @@ export default class Device extends React.Component {
     )
   }
 }
+
+// export default getCookie(Device, 'name')
+export default getCookie('name')(Device)
