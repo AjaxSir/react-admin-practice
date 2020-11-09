@@ -9,10 +9,10 @@ module.exports = function(app) {
             }, // 如果请求地址里面不含v2 那么就需要重写成 "^/v2" : ""
         }),
         createProxyMiddleware('/api', {
-            target: 'http://localhost:3003',
+            target: 'http://172.16.2.43:18080',
             changeOrigin: true,
             pathRewrite: {
-                '^/api': '',
+                '^/api': '/api',
             },
         })
     )

@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.baseURL = process.env.BASE_API
+axios.defaults.baseURL = '/api'
 axios.interceptors.request.use(
     (config) => {
         console.log(config)
@@ -12,7 +12,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
     (res) => {
-        return res
+        return res && res.data
     },
     (err) => {
         return Promise.reject(err)

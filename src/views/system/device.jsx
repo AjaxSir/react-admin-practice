@@ -57,8 +57,12 @@ class Device extends React.Component {
         render: () => <Button>Edit</Button>,
       },
     ]
+    console.log(this.props)
     return (
       <div>
+        <span>
+          123{this.props.name}
+        </span>
         <Table
           rowKey={(item) => item.id}
           columns={Column}

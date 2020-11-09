@@ -20,7 +20,7 @@ const getCookie = (key) => (WrapedComponent) => {
       return (
         <WrapedComponent
           name={this.state.name}
-          {...this.props}
+          test={1111}
         ></WrapedComponent>
       )
     }

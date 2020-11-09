@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_woman</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ic_woman" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-3">
+            <circle id="Oval" fill="#FDF1EA" cx="12" cy="12" r="12"></circle>
+            <g id="Group-2" transform="translate(7.000000, 6.000000)" fill="#ED7C30" fill-rule="nonzero">
+                <path d="M4.36,9.72065584 C2.0986288,9.40460898 0.36,7.43770585 0.36,5.0625 C0.36,2.467583 2.43515864,0.36 5,0.36 C7.56484136,0.36 9.64,2.467583 9.64,5.0625 C9.64,7.43770585 7.9013712,9.40460898 5.64,9.72065584 L5.64,10.435 L7.66666667,10.435 L7.66666667,11.715 L5.64,11.715 L5.64,13.35 L4.36,13.35 L4.36,11.715 L2.33333333,11.715 L2.33333333,10.435 L4.36,10.435 L4.36,9.72065584 Z M5,8.485 C6.85343664,8.485 8.36,6.95489659 8.36,5.0625 C8.36,3.17010341 6.85343664,1.64 5,1.64 C3.14656336,1.64 1.64,3.17010341 1.64,5.0625 C1.64,6.95489659 3.14656336,8.485 5,8.485 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

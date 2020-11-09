@@ -1,0 +1,61 @@
+.bg {
+    height: 100vh;
+    width: 100%;
+    background: url('../../static/img/img_bg.jpg');
+    background-size: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.abs-center {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.content {
+    background: white;
+    text-align: center;
+    width: 800px;
+    height: 50vh;
+    min-height: 480px;
+    background-color: #1890ff;
+    .half-content {
+        &:nth-child(2) {
+            background-color: white;
+        }
+        h1,
+        h2 {
+            text-align: left;
+            color: white;
+        }
+        .loginTitle {
+            color: BLACK;
+        }
+        padding: 20px;
+        box-sizing: border-box;
+        width: 50%;
+        height: 100%;
+        float: left;
+    }
+}
+
+.form {
+    .loginInput {
+        width: 360px;
+    }
+    width: 100%;
+    margin-top: 60px;
+    .loginBtn {
+        margin-top: 30px;
+        width: 360px;
+        height: 40px;
+    }
+}
+
+.ask {
+    text-align: right;
+}

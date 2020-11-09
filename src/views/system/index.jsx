@@ -5,6 +5,7 @@ import UseStateHooks from '../hooks/useState.jsx'
 import UseMemoHooks from '../hooks/useMemo.jsx'
 import ReactMemo from '../hooks/reactMemo.jsx'
 import UseReducer from '../hooks/useReducer.jsx'
+import { unstable_trace as trace } from 'scheduler/tracing' // 性能查看
 const { Item } = Form
 const { Option } = Select
 const Layout = {
@@ -96,12 +97,19 @@ class userSystem extends React.Component {
   }
 
   changeName() {
-    console.log('修改名字')
-    this.setState({
-      obj: {
-        name: 'update sxl',
-      },
+    console.log('修改名字', '需搜索changeName')
+    // 事件
+    trace('update name', performance.now(), () => {
+      this.setState({
+        obj: {
+          name: 'update sxl',
+        },
+      })
     })
+    // 渲染组件
+    // trace("initial render", performance.now(), () => {
+    //   ReactDom.render(<App />, document.getElementById("app"));
+    // });
   }
   changeCount() {
     this.setState((prev) => {

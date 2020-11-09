@@ -4,7 +4,6 @@ import { GetCookie, removeCookie } from '../utils/cookie'
 import { Dropdown, Menu } from 'antd'
 import store from '../redux/store'
 import { removeUserInfo } from '../redux/action'
-import { DownOutlined } from '@ant-design/icons'
 import './index.scss'
 import { withRouter } from 'react-router-dom'
 const { Item, Divider } = Menu
@@ -39,16 +38,16 @@ const Header = (props) => {
       </Menu>
     )
   }
-  return (
-    <div className="nav">
-      <SvgIcon fill={'gray'} iconClass={'qq'}></SvgIcon>
-      {GetCookie('username')}
-      <Dropdown overlay={menu} trigger={['click']}>
-        <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
-          <DownOutlined></DownOutlined>
-        </span>
-      </Dropdown>
-    </div>
-  )
+    return (
+      <div className="nav">
+        <SvgIcon fill={'gray'} iconClass={'qq'}></SvgIcon>
+        {GetCookie('username')}
+        <Dropdown overlay={menu} trigger={['click']}>
+          <span style={{ marginLeft: '5px', cursor: 'pointer' }}>
+            ↓
+          </span>
+        </Dropdown>
+      </div>
+    ) 
 }
 export default withRouter(Header)
