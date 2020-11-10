@@ -50,6 +50,7 @@ class Login extends React.Component {
     const finish = () => {
       login(this.state).then(res => {
         SetCookie('username', this.state.username)
+        SetCookie('token', res.token)
         this.props.history.push('/dash/welcome')
         store.dispatch(
           setUserInfo({

@@ -1,8 +1,12 @@
 import axios from 'axios'
+import { GetCookie } from '@/utils/cookie'
+
 axios.defaults.baseURL = '/api'
 axios.interceptors.request.use(
     (config) => {
-        console.log(config)
+        if (GetCookie('token')) {
+            config.headers['Authorization'] = 'Bearer ' + GetCookie('token')
+        }
         return config
     },
     (error) => {
